@@ -1,1 +1,3 @@
 # VarastoApp
+
+Kouluprojekti react-nativella

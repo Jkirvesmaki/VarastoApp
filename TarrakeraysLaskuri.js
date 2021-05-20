@@ -45,21 +45,20 @@ export default function SuoriteLisälaskuri() {
       marginTop: "18%",
     },
     button: {
-      
       width: 200,
-       paddingVertical: 8,
-       paddingHorizontal: 24,
-       borderRadius: 4,
-       elevation: 3,
-       backgroundColor: 'lightblue',
-     },
-     text: {
-       fontSize: 16,
-       lineHeight: 21,
-       fontWeight: 'bold',
-       letterSpacing: 0.25,
-       color: '#4d4b49',
-     },
+      paddingVertical: 8,
+      paddingHorizontal: 24,
+      borderRadius: 4,
+      elevation: 3,
+      backgroundColor: "lightblue",
+    },
+    text: {
+      fontSize: 16,
+      lineHeight: 21,
+      fontWeight: "bold",
+      letterSpacing: 0.25,
+      color: "#4d4b49",
+    },
   });
 
   const Laske = () => {
@@ -91,9 +90,9 @@ export default function SuoriteLisälaskuri() {
               value={kannat}
             />
 
-<Pressable style={styles.button} onPress={Laske}>
-      <Text style={styles.text}>Laske saatava aika</Text>
-    </Pressable>  
+            <Pressable style={styles.button} onPress={Laske}>
+              <Text style={styles.text}>Laske saatava aika</Text>
+            </Pressable>
           </View>
           <Text>Saatava aika:</Text>
           <Text style={{ marginBottom: 25, fontSize: 20 }}>{result}</Text>
