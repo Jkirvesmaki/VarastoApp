@@ -2,7 +2,8 @@ import {
   setStatusBarNetworkActivityIndicatorVisible,
   StatusBar,
 } from "expo-status-bar";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect} from "react";
+
 import { Input, Button } from "react-native-elements";
 import {
   StyleSheet,
@@ -10,6 +11,7 @@ import {
   View,
   Alert,
   FlatList,
+  Pressable,
   Keyboard,
   TouchableWithoutFeedback,
 } from "react-native";
@@ -24,7 +26,7 @@ export default function SuoriteLisälaskuri() {
   const [kannat, setKannat] = React.useState("");
   const [result, setResult] = React.useState("");
   const [data, setData] = useState([]);
-  const [kuukausi, setKuukausi] = useState("");
+  const [kuukausi, setKuukausi] = useState("19.5.2021");
   const [thisMonth, setThisMonth] = useState(
     parseInt(new Date().getMonth() + 1)
   );
@@ -53,14 +55,31 @@ export default function SuoriteLisälaskuri() {
     },
     monthselector: {
       paddingTop: "10%",
+      alignContent:"center",
+      
+      flexDirection: "row",
+    },
+    button: {
+      paddingVertical: 12,
+      paddingHorizontal: 5,
+      borderRadius: 4,
+      elevation: 3,
+      backgroundColor: 'white',
+      width: 180,
+    },
+    text: {
+      fontSize: 16,
+      lineHeight: 21,
+      fontWeight: 'bold',
+      letterSpacing: 0.25,
+      color: '#4d4b49',
     },
   });
 
   useEffect(() => {
     db.transaction((tx) => {
       tx.executeSql(
-        "select * from suorite where pvm = (?)",
-      ["19.5.2021"],
+       `select * from suorite`, 
         [],
         (tx, results) => {
           var temp = [];
@@ -91,7 +110,7 @@ export default function SuoriteLisälaskuri() {
   const updateList = () => {
     db.transaction((tx) => {
       tx.executeSql(
-        "select * from suorite where pvm = 19.5.2021",
+        "select * from suorite",
         [],
         (_, { rows }) => setData(rows._array)
       );
@@ -139,6 +158,15 @@ export default function SuoriteLisälaskuri() {
     if (thisMonth <= 10) return thisMonth.substring(3, 3);
     else return thisMonth.substring(3, 4);
   };
+  const deleteItem = (id) => {
+    db.transaction(
+      (tx) => {
+        tx.executeSql(`delete from suorite where id = ?;`, [id]);
+      },
+      null,
+      updateList
+    );
+  };
 
   const getDate = () => {
     if (thisMonth === 1) {
@@ -181,12 +209,19 @@ export default function SuoriteLisälaskuri() {
   };
 
   return (
+
     <View style={styles.container}>
+      
       <View style={styles.monthselector}>
-        <Text>
-          <Button onPress={lastMonth} title="Edellinen kuukausi" />{" "}
-          <Button onPress={nextMonth} title="Seuraava kuukausi" />
-        </Text>
+      <Pressable style={styles.button} onPress={lastMonth}>
+      <Text style={styles.text}>Viime kuukausi</Text>
+    </Pressable>
+    <Text> {"\n"}</Text>
+    <Pressable style={styles.button} onPress={nextMonth}>
+      <Text style={styles.text}>Seuraava kuukausi</Text>
+    </Pressable>  
+     
+        
       </View>
       <View style={styles.box}>
         <View style={styles.input}>
@@ -197,6 +232,7 @@ export default function SuoriteLisälaskuri() {
             keyExtractor={(item, index) => index.toString()}
             renderItem={({ item }) => listItemView(item)}
           />
+          
         </View>
         <Text
           style={{
@@ -204,7 +240,9 @@ export default function SuoriteLisälaskuri() {
             textAlign: "center",
             color: "grey",
           }}
+
         ></Text>
+        
       </View>
     </View>
   );

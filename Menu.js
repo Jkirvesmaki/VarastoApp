@@ -1,5 +1,5 @@
 import React from "react";
-import { ImageBackground, StyleSheet, Text, View, Image } from "react-native";
+import { ImageBackground, StyleSheet, Text, View, Pressable } from "react-native";
 import { Header } from "react-native-elements";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
@@ -29,12 +29,27 @@ const styles = StyleSheet.create({
     alignItems: "center",
     padding: "10%",
   },
-  navibox: {},
   navigation: {
     marginTop: "55%",
     marginLeft: 40,
     marginRight: 40,
     justifyContent: "space-between",
+  },
+  button: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingVertical: 12,
+    paddingHorizontal: 32,
+    borderRadius: 4,
+    elevation: 3,
+    backgroundColor: 'white',
+  },
+  text: {
+    fontSize: 16,
+    lineHeight: 21,
+    fontWeight: 'bold',
+    letterSpacing: 0.25,
+    color: '#4d4b49',
   },
 });
 
@@ -46,24 +61,21 @@ function HomeScreen({ navigation }) {
         style={{ width: "100%", height: "100%" }}
       >
         <View>
+     
           <View style={styles.navigation}>
-            <Button
-              color="blue"
-              title="Suoritelisä laskuri"
-              onPress={() => navigation.navigate("Suorite laskuri")}
-            />
+          <Pressable style={styles.button} onPress={() => navigation.navigate("Suorite laskuri")}>
+      <Text style={styles.text}>Suorite laskuri</Text>
+    </Pressable>
             <Text> {"\n"}</Text>
-            <Button
-              color="blue"
-              title="Tarrakeräys laskuri"
-              onPress={() => navigation.navigate("Tarra laskuri")}
-            />
+            <Pressable style={styles.button} onPress={() => navigation.navigate("Tarra laskuri")}>
+      <Text style={styles.text}>Tarrakerays Laskuri</Text>
+    </Pressable>
+           
             <Text> {"\n"}</Text>
-            <Button
-              color="blue"
-              title="Keräyskalenteri"
-              onPress={() => navigation.navigate("Keräyskalenteri")}
-            />
+            <Pressable style={styles.button} onPress={() => navigation.navigate("Keräyskalenteri")}>
+      <Text style={styles.text}>Keräyskalenteri</Text>
+    </Pressable>
+            
           </View>
         </View>
       </ImageBackground>

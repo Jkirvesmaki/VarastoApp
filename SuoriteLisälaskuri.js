@@ -13,7 +13,7 @@ import {
   FlatList,
   Keyboard,
   TouchableWithoutFeedback,
-  ImageBackground,
+  Pressable,
 } from "react-native";
 import * as SQLite from "expo-sqlite";
 import DateTimePicker from "@react-native-community/datetimepicker";
@@ -61,6 +61,22 @@ export default function SuoriteLisälaskuri() {
       flexDirection: "row",
       backgroundColor: "white",
     },
+    button: {
+      
+      width: 200,
+       paddingVertical: 8,
+       paddingHorizontal: 24,
+       borderRadius: 4,
+       elevation: 3,
+       backgroundColor: 'lightblue',
+     },
+     text: {
+       fontSize: 16,
+       lineHeight: 21,
+       fontWeight: 'bold',
+       letterSpacing: 0.25,
+       color: '#4d4b49',
+     },
   });
 
   useEffect(() => {
@@ -80,7 +96,7 @@ export default function SuoriteLisälaskuri() {
     });
   };
 
-  const Tallenna = () => {
+  const Laske = () => {
     Suoritelisälasku();
   };
 
@@ -105,7 +121,7 @@ export default function SuoriteLisälaskuri() {
     }
   };
 
-  const saveItem = () => {
+  const Tallenna = () => {
     db.transaction(
       (tx) => {
         tx.executeSql("insert into suorite (suorite, pvm) values (?, ?);", [
@@ -172,21 +188,19 @@ export default function SuoriteLisälaskuri() {
                 value={A}
               />
             </View>
-            <Button onPress={showDatepicker} title="Valitse päivämäärä" />
-            <DateTimePicker
-              testID="dateTimePicker"
-              value={date}
-              mode={mode}
-              is24Hour={true}
-              display="default"
-              onChange={onChange}
-            />
-            <Button onPress={Tallenna} title="Laske suoritteesi" size="150" />
+          
+             <Pressable style={styles.button} onPress={Laske}>
+      <Text style={styles.text}>Laske suoriteaste</Text>
+    </Pressable>  
             <Text>
-              {"\n"}Suoriteasteesi on tänään: {suorite}{" "}
+              {"\n"}Suoriteasteesi on tänään: {suorite}{"\n"}
             </Text>
-
-            <Button onPress={saveItem} title="Tallenna suorite" />
+            <Text>
+              {"\n"}
+            </Text>
+            <Pressable style={styles.button} onPress={Tallenna}>
+      <Text style={styles.text}>Tallenna suorite</Text>
+    </Pressable>  
             <Text style={{ marginTop: 30, fontSize: 20 }}>
               Suoritteet:{"\n"}
             </Text>
