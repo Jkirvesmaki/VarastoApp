@@ -62,21 +62,20 @@ export default function SuoriteLisälaskuri() {
       backgroundColor: "white",
     },
     button: {
-      
       width: 200,
-       paddingVertical: 8,
-       paddingHorizontal: 24,
-       borderRadius: 4,
-       elevation: 3,
-       backgroundColor: 'lightblue',
-     },
-     text: {
-       fontSize: 16,
-       lineHeight: 21,
-       fontWeight: 'bold',
-       letterSpacing: 0.25,
-       color: '#4d4b49',
-     },
+      paddingVertical: 8,
+      paddingHorizontal: 24,
+      borderRadius: 4,
+      elevation: 3,
+      backgroundColor: "lightblue",
+    },
+    text: {
+      fontSize: 16,
+      lineHeight: 21,
+      fontWeight: "bold",
+      letterSpacing: 0.25,
+      color: "#4d4b49",
+    },
   });
 
   useEffect(() => {
@@ -99,7 +98,7 @@ export default function SuoriteLisälaskuri() {
   const Laske = () => {
     Suoritelisälasku();
   };
-
+  //TODO: Tarkemman systeemin teko
   const Suoritelisälasku = () => {
     if (A <= 1) {
       setSuorite(20);
@@ -115,7 +114,6 @@ export default function SuoriteLisälaskuri() {
       setSuorite(85);
     } else if (A <= 7) {
       setSuorite(100);
-      //setData([...data,{key: suorite}])
     } else {
       Alert.alert("Error", "Syötä numerot");
     }
@@ -163,18 +161,6 @@ export default function SuoriteLisälaskuri() {
     setMode(currentMode);
   };
 
-  const showDatepicker = () => {
-    showMode("date");
-  };
-  const showTimepicker = () => {
-    showMode("time");
-  };
-  const onChange = (event, selectedDate) => {
-    const currentDate = selectedDate || date;
-    setShow(Platform.OS === "ios");
-    setDate(currentDate);
-  };
-
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
       <View style={styles.container}>
@@ -188,19 +174,18 @@ export default function SuoriteLisälaskuri() {
                 value={A}
               />
             </View>
-          
-             <Pressable style={styles.button} onPress={Laske}>
-      <Text style={styles.text}>Laske suoriteaste</Text>
-    </Pressable>  
+
+            <Pressable style={styles.button} onPress={Laske}>
+              <Text style={styles.text}>Laske suoriteaste</Text>
+            </Pressable>
             <Text>
-              {"\n"}Suoriteasteesi on tänään: {suorite}{"\n"}
-            </Text>
-            <Text>
+              {"\n"}Suoriteasteesi on tänään: {suorite}
               {"\n"}
             </Text>
+            <Text>{"\n"}</Text>
             <Pressable style={styles.button} onPress={Tallenna}>
-      <Text style={styles.text}>Tallenna suorite</Text>
-    </Pressable>  
+              <Text style={styles.text}>Tallenna suorite</Text>
+            </Pressable>
             <Text style={{ marginTop: 30, fontSize: 20 }}>
               Suoritteet:{"\n"}
             </Text>

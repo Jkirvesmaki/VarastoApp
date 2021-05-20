@@ -1,23 +1,7 @@
-import {
-  setStatusBarNetworkActivityIndicatorVisible,
-  StatusBar,
-} from "expo-status-bar";
-import React, { useState, useEffect} from "react";
-
-import { Input, Button } from "react-native-elements";
-import {
-  StyleSheet,
-  Text,
-  View,
-  Alert,
-  FlatList,
-  Pressable,
-  Keyboard,
-  TouchableWithoutFeedback,
-} from "react-native";
+import React, { useState, useEffect } from "react";
+import { StyleSheet, Text, View, FlatList, Pressable } from "react-native";
 
 import * as SQLite from "expo-sqlite";
-
 const db = SQLite.openDatabase("suorite.db");
 
 export default function SuoriteLisälaskuri() {
@@ -55,8 +39,8 @@ export default function SuoriteLisälaskuri() {
     },
     monthselector: {
       paddingTop: "10%",
-      alignContent:"center",
-      
+      alignContent: "center",
+
       flexDirection: "row",
     },
     button: {
@@ -64,30 +48,26 @@ export default function SuoriteLisälaskuri() {
       paddingHorizontal: 5,
       borderRadius: 4,
       elevation: 3,
-      backgroundColor: 'white',
+      backgroundColor: "white",
       width: 180,
     },
     text: {
       fontSize: 16,
       lineHeight: 21,
-      fontWeight: 'bold',
+      fontWeight: "bold",
       letterSpacing: 0.25,
-      color: '#4d4b49',
+      color: "#4d4b49",
     },
   });
 
   useEffect(() => {
     db.transaction((tx) => {
-      tx.executeSql(
-       `select * from suorite`, 
-        [],
-        (tx, results) => {
-          var temp = [];
-          for (let i = 0; i < results.rows.length; ++i)
-            temp.push(results.rows.item(i));
-          setFlatListItems(temp);
-        }
-      );
+      tx.executeSql(`select * from suorite`, [], (tx, results) => {
+        var temp = [];
+        for (let i = 0; i < results.rows.length; ++i)
+          temp.push(results.rows.item(i));
+        setFlatListItems(temp);
+      });
     });
     updateList();
     getDate();
@@ -104,15 +84,11 @@ export default function SuoriteLisälaskuri() {
       />
     );
   };
-
-  useEffect(() => {}, []);
-
+  //TODO: select * from suorite where pvm = ???
   const updateList = () => {
     db.transaction((tx) => {
-      tx.executeSql(
-        "select * from suorite",
-        [],
-        (_, { rows }) => setData(rows._array)
+      tx.executeSql("select * from suorite", [], (_, { rows }) =>
+        setData(rows._array)
       );
     });
   };
@@ -141,7 +117,7 @@ export default function SuoriteLisälaskuri() {
       </View>
     );
   };
-
+  //Kuukauden valitsimen funktiot
   const lastMonth = () => {
     setThisMonth(thisMonth - 1);
     if (thisMonth === 0) setThisMonth(1);
@@ -154,20 +130,7 @@ export default function SuoriteLisälaskuri() {
     getDate(thisMonth);
   };
 
-  const month = () => {
-    if (thisMonth <= 10) return thisMonth.substring(3, 3);
-    else return thisMonth.substring(3, 4);
-  };
-  const deleteItem = (id) => {
-    db.transaction(
-      (tx) => {
-        tx.executeSql(`delete from suorite where id = ?;`, [id]);
-      },
-      null,
-      updateList
-    );
-  };
-
+  //Muuttaa kuukaudet numeroista sanoiksi
   const getDate = () => {
     if (thisMonth === 1) {
       setKuukausi("Tammikuu");
@@ -209,19 +172,15 @@ export default function SuoriteLisälaskuri() {
   };
 
   return (
-
     <View style={styles.container}>
-      
       <View style={styles.monthselector}>
-      <Pressable style={styles.button} onPress={lastMonth}>
-      <Text style={styles.text}>Viime kuukausi</Text>
-    </Pressable>
-    <Text> {"\n"}</Text>
-    <Pressable style={styles.button} onPress={nextMonth}>
-      <Text style={styles.text}>Seuraava kuukausi</Text>
-    </Pressable>  
-     
-        
+        <Pressable style={styles.button} onPress={lastMonth}>
+          <Text style={styles.text}>Viime kuukausi</Text>
+        </Pressable>
+        <Text> {"\n"}</Text>
+        <Pressable style={styles.button} onPress={nextMonth}>
+          <Text style={styles.text}>Seuraava kuukausi</Text>
+        </Pressable>
       </View>
       <View style={styles.box}>
         <View style={styles.input}>
@@ -232,7 +191,6 @@ export default function SuoriteLisälaskuri() {
             keyExtractor={(item, index) => index.toString()}
             renderItem={({ item }) => listItemView(item)}
           />
-          
         </View>
         <Text
           style={{
@@ -240,9 +198,7 @@ export default function SuoriteLisälaskuri() {
             textAlign: "center",
             color: "grey",
           }}
-
         ></Text>
-        
       </View>
     </View>
   );

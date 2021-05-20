@@ -1,11 +1,13 @@
 import React from "react";
-import { ImageBackground, StyleSheet, Text, View, Pressable } from "react-native";
-import { Header } from "react-native-elements";
+import {
+  ImageBackground,
+  StyleSheet,
+  Text,
+  View,
+  Pressable,
+} from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-import { Button } from "react-native-elements";
-import still from "./still.png";
-import bg from "./bg.jpeg";
 import SuoriteLisälaskuri from "./SuoriteLisälaskuri";
 import TarrakeraysLaskuri from "./TarrakeraysLaskuri";
 import SuoriteKalenteri from "./SuoriteKalenteri";
@@ -36,20 +38,20 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
   },
   button: {
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
     paddingVertical: 12,
     paddingHorizontal: 32,
     borderRadius: 4,
     elevation: 3,
-    backgroundColor: 'white',
+    backgroundColor: "white",
   },
   text: {
     fontSize: 16,
     lineHeight: 21,
-    fontWeight: 'bold',
+    fontWeight: "bold",
     letterSpacing: 0.25,
-    color: '#4d4b49',
+    color: "#4d4b49",
   },
 });
 
@@ -61,21 +63,28 @@ function HomeScreen({ navigation }) {
         style={{ width: "100%", height: "100%" }}
       >
         <View>
-     
           <View style={styles.navigation}>
-          <Pressable style={styles.button} onPress={() => navigation.navigate("Suorite laskuri")}>
-      <Text style={styles.text}>Suorite laskuri</Text>
-    </Pressable>
+            <Pressable
+              style={styles.button}
+              onPress={() => navigation.navigate("Suorite laskuri")}
+            >
+              <Text style={styles.text}>Suorite laskuri</Text>
+            </Pressable>
             <Text> {"\n"}</Text>
-            <Pressable style={styles.button} onPress={() => navigation.navigate("Tarra laskuri")}>
-      <Text style={styles.text}>Tarrakerays Laskuri</Text>
-    </Pressable>
-           
+            <Pressable
+              style={styles.button}
+              onPress={() => navigation.navigate("Tarra laskuri")}
+            >
+              <Text style={styles.text}>Tarrakerays Laskuri</Text>
+            </Pressable>
+
             <Text> {"\n"}</Text>
-            <Pressable style={styles.button} onPress={() => navigation.navigate("Keräyskalenteri")}>
-      <Text style={styles.text}>Keräyskalenteri</Text>
-    </Pressable>
-            
+            <Pressable
+              style={styles.button}
+              onPress={() => navigation.navigate("Keräyskalenteri")}
+            >
+              <Text style={styles.text}>Keräyskalenteri</Text>
+            </Pressable>
           </View>
         </View>
       </ImageBackground>

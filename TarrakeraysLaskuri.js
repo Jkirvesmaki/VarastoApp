@@ -1,9 +1,5 @@
-import {
-  setStatusBarNetworkActivityIndicatorVisible,
-  StatusBar,
-} from "expo-status-bar";
 import React, { useState, useEffect } from "react";
-import { Input, Button } from "react-native-elements";
+import { Input } from "react-native-elements";
 import {
   StyleSheet,
   Text,
@@ -12,10 +8,6 @@ import {
   TouchableWithoutFeedback,
   Pressable,
 } from "react-native";
-
-import * as SQLite from "expo-sqlite";
-
-const db = SQLite.openDatabase("suorite.db");
 
 export default function SuoriteLisälaskuri() {
   const [rivit, setRivit] = React.useState("");
@@ -60,7 +52,7 @@ export default function SuoriteLisälaskuri() {
       color: "#4d4b49",
     },
   });
-
+  //TODO: Oikean kaavan selvittäminen ja implemointi
   const Laske = () => {
     setResult(rivit * paino * kannat);
     return result;
