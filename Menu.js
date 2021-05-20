@@ -68,14 +68,14 @@ function HomeScreen({ navigation }) {
               style={styles.button}
               onPress={() => navigation.navigate("Suorite laskuri")}
             >
-              <Text style={styles.text}>Suorite laskuri</Text>
+              <Text style={styles.text}>Suoritelaskuri</Text>
             </Pressable>
             <Text> {"\n"}</Text>
             <Pressable
               style={styles.button}
               onPress={() => navigation.navigate("Tarra laskuri")}
             >
-              <Text style={styles.text}>Tarrakerays Laskuri</Text>
+              <Text style={styles.text}>Tarrakeräyslaskuri</Text>
             </Pressable>
 
             <Text> {"\n"}</Text>
