@@ -52,7 +52,7 @@ export default function SuoriteLisälaskuri() {
       color: "#4d4b49",
     },
   });
-  //TODO: Oikean kaavan selvittäminen ja implemointi
+  //TODO: Real algorithm
   const Laske = () => {
     setResult(rivit * paino * kannat);
     return result;

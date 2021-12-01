@@ -98,7 +98,7 @@ export default function SuoriteLisälaskuri() {
   const Laske = () => {
     Suoritelisälasku();
   };
-  //TODO: Tarkemman systeemin teko
+  //TODO: More accurate calculations
   const Suoritelisälasku = () => {
     if (A <= 1) {
       setSuorite(20);

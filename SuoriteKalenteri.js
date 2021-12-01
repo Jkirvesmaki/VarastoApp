@@ -84,7 +84,7 @@ export default function SuoriteLisälaskuri() {
       />
     );
   };
-  //TODO: select * from suorite where pvm = ???
+  
   const updateList = () => {
     db.transaction((tx) => {
       tx.executeSql("select * from suorite", [], (_, { rows }) =>
@@ -117,7 +117,7 @@ export default function SuoriteLisälaskuri() {
       </View>
     );
   };
-  //Kuukauden valitsimen funktiot
+ 
   const lastMonth = () => {
     setThisMonth(thisMonth - 1);
     if (thisMonth === 0) setThisMonth(1);
@@ -130,7 +130,7 @@ export default function SuoriteLisälaskuri() {
     getDate(thisMonth);
   };
 
-  //Muuttaa kuukaudet numeroista sanoiksi
+  //TODO: make this a better way
   const getDate = () => {
     if (thisMonth === 1) {
       setKuukausi("Tammikuu");

@@ -1,6 +1,5 @@
 # VarastoApp
 
-Kouluprojekti react-nativella
+Schoolproject for calculating warehouse working efficiency. 
 
-Libraries used: https://styled-components.com/
-https://www.npmjs.com/package/expo-sqlite
+Made with React Native and sqlite. 
